@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheWelcome from "@/components/TheWelcome.vue";
 import ProfileBox from "@/components/ProfileBox.vue";
 </script>
 
@@ -31,6 +30,5 @@ import ProfileBox from "@/components/ProfileBox.vue";
     >
     </ProfileBox>
 
-<!--    <TheWelcome />-->
   </main>
 </template>

@@ -123,7 +123,6 @@ export default {
   padding-right: 0;
   margin-right: 0;
   transform: scaleX(-1);
-
 }
 .profile .avatar-name-holder .avatar:dir(ltr) {
   padding-left: 0;
