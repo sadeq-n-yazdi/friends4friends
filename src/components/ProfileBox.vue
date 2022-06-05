@@ -66,10 +66,7 @@ export default {
 }
 
 .profile .avatar-name-holder {
-  /*background-color: rgba(0, 66, 255, 0.3);*/
-  background-color: rgba(0, 255, 127, 0.3);
-  /*background-color: rgba(255, 0, 67, 0.5);*/
-  /*background-color: rgba(67, 0, 255, 0.5);*/
+  background-color: rgba(0, 255, 127, 0.5);
   border-radius: 50px 5px 5px 50px;
   display: flex;
   flex-grow: 1;
@@ -79,11 +76,11 @@ export default {
   align-items: stretch;
 }
 .profile[data-team="esteghlal"] .avatar-name-holder {
-  background-color: rgba(0, 66, 255, 0.5);
+  background-color: rgba(0, 191, 255, 0.5);
 }
 
 .profile[data-team="perspolis"] .avatar-name-holder {
-  background-color: rgba(255, 66, 0, 0.5);
+  background-color: rgba(255, 0, 0, 0.6);
 }
 
 [lang="fa"] .profile .avatar-name-holder {
@@ -95,8 +92,8 @@ export default {
 }
 
 .profile .avatar-name-holder .avatar {
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
   flex-grow: 0;
   transition-duration: 300ms;
   transition-timing-function: ease-out;
