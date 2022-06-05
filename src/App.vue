@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
+import { store } from "@/store";
 </script>
 
 <template>
   <header>
+    <div id="user" v-if="store.state.user">
+      <div style="display: none">
+        <div>#{{ store.state.user.uid }}</div>
+
+        <div>{{ store.state.user.username }}</div>
+
+        <div>{{ store.state.user.name }}</div>
+      </div>
+    </div>
     <img
-      alt="Vue logo"
+      alt="Friends4Friends logo"
       class="logo"
       src="@/assets/logo.svg"
       width="125"
@@ -24,8 +34,9 @@ import { RouterLink, RouterView } from "vue-router";
   <RouterView />
 </template>
 
-<style>
-@import "@/assets/base.css";
+<style lang="scss">
+@import "@/assets/base";
+@import "@/assets/user.scss";
 
 #app {
   max-width: 1280px;
@@ -33,14 +44,15 @@ import { RouterLink, RouterView } from "vue-router";
   padding: 2rem;
 
   font-weight: normal;
-}
-[lang="fa"] #app {
-  direction: rtl;
-  /*font-family: Vazirmatn, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
-  font-family: "Vazir Code Hack", "Vazir Code", Vazirmatn,
-    "Noto Naskh Arabic UI", "Noto Naskh Arabic", "Fira Code Retina",
-    "JetBrainsMonoExtraBold Nerd Font Mono", "Inconsolata for Powerline",
-    "Droid Sans Mono", "Liberation Mono", monospace;
+
+  [lang="fa"] & {
+    direction: rtl;
+    /*font-family: Vazirmatn, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
+    font-family: "Vazir Code Hack", "Vazir Code", Vazirmatn,
+      "Noto Naskh Arabic UI", "Noto Naskh Arabic", "Fira Code Retina",
+      "JetBrainsMonoExtraBold Nerd Font Mono", "Inconsolata for Powerline",
+      "Droid Sans Mono", "Liberation Mono", monospace;
+  }
 }
 
 header {
@@ -78,24 +90,23 @@ nav {
   align-content: center;
   justify-items: stretch;
   justify-content: center;
-}
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
+  a.router-link-exact-active {
+    color: var(--color-text);
+  }
+  a.router-link-exact-active:hover {
+    background-color: transparent;
+  }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
+  a {
+    display: inline-flex;
+    padding: 0 1rem;
+    border-left: 1px solid var(--color-border);
+  }
 
-nav a {
-  display: inline-flex;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
+  a:first-of-type {
+    border: 0;
+  }
 }
 
 @media (min-width: 1024px) {

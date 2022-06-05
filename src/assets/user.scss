@@ -1,0 +1,30 @@
+#user {
+  display: flex;
+  flex-grow: 1;
+  align-self: stretch;
+  align-items: stretch;
+  padding-bottom: 5mm;
+  margin-bottom: 5px;
+  border-bottom: 5px solid #2c3e5080;
+  border-radius: 10% 80%;
+  flex-wrap: nowrap;
+
+  > div {
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    > div {
+      border-left: #2c3e50 1px solid;
+    }
+
+  }
+  > div:first-child {
+    border-left: #2c3e50 0 none;
+    background-color: antiquewhite;
+  }
+
+}
