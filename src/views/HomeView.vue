@@ -5,30 +5,11 @@ import ProfileBox from "@/components/ProfileBox.vue";
 <template>
   <main>
     <ProfileBox
-      address="Sheffield, UK"
-      company="Educational Publishing"
-      email="me@example.com"
-      href="person/001"
-      img="/assets/img/avatar/001.png"
-      name="John Doe"
-      phone="+44 7749 373636"
-      profession="👨‍💻 Senior Fullstack Developer"
-      uid="004"
-      website="https://example.com"
+      v-for="person in $store.state.people"
+      :key="person.uid"
+      :info="person"
     >
-      He will be happy to help anyone to improve their skills specially in
-      codding.
+      {{ person.notes }}
     </ProfileBox>
-
-    <ProfileBox
-      name="Jane Doe"
-      img="assets/img/avatar/000.webp"
-      uid="000"
-      address="Tehran, Iran"
-      company="Samayesh"
-      email="jane.doe@gmail.com"
-    >
-    </ProfileBox>
-
   </main>
 </template>

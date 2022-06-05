@@ -2,19 +2,7 @@
 import Avatar from "@/components/PeopleAvatar.vue";
 
 export default {
-  props: [
-    "name",
-    "uid",
-    "img",
-    "address",
-    "email",
-    "phone",
-    "website",
-    "company",
-    "profession",
-    "href",
-    "resume",
-  ],
+  props: ["info"],
   components: {
     Avatar,
   },
@@ -22,42 +10,47 @@ export default {
 </script>
 
 <template>
-  <div class="profile" :data-uid="uid">
+  <div class="profile" :data-uid="info.uid" :data-team="info.team">
     <div class="avatar-name-holder">
-      <avatar :src="img" :uid="uid" :name="name" class="avatar" />
-      <div class="profile-name">{{ name }}</div>
+      <avatar
+        :src="info.avatar"
+        :uid="info.uid"
+        :name="info.name"
+        class="avatar"
+      />
+      <div class="profile-name">{{ info.name }}</div>
     </div>
     <div class="profile-info">
       <div class="profession">
-        <span v-if="profession">{{ profession }}</span>
-        <span v-if="company && profession"> @ </span>
-        <span v-if="company">{{ company }}</span>
+        <span v-if="info.profession">{{ info.profession }}</span>
+        <span v-if="info.company && info.profession"> @ </span>
+        <span v-if="info.company">{{ info.company }}</span>
       </div>
       <div class="profile-content">
         <slot></slot>
       </div>
       <div class="contacts">
-        <div class="address" v-if="address">
-          🗺️ <span>{{ address }}</span>
+        <div class="address" v-if="info.address">
+          🗺️ <span>{{ info.address }}</span>
         </div>
-        <div class="phone" v-if="phone">
-          📞 <span>{{ phone }}</span>
+        <div class="phone" v-if="info.phone">
+          📞 <span>{{ info.phone }}</span>
         </div>
-        <div class="email" v-if="email">
-          ✉️ <span>{{ email }}</span>
+        <div class="email" v-if="info.email">
+          ✉️ <span>{{ info.email }}</span>
         </div>
       </div>
     </div>
     <div class="action-bar">
-      <a class="button" v-if="href" :href="href">More ...</a>
-      <a class="button" v-if="website" :href="website">Website</a>
+      <a class="button" v-if="info.href" :href="info.href">More ...</a>
+      <a class="button" v-if="info.website" :href="info.website">Website</a>
       <a
-        v-if="!resume"
-        :href="'/assets/pdfs/resume/' + uid + '-resume.pdf'"
+        v-if="!info.resume"
+        :href="'/assets/pdfs/resume/' + info.uid + '-resume.pdf'"
         class="button"
         >Resume</a
       >
-      <a class="button" v-if="resume" :href="resume">Resume</a>
+      <a class="button" v-if="info.resume" :href="info.resume">Resume</a>
     </div>
   </div>
 </template>
@@ -73,8 +66,8 @@ export default {
 }
 
 .profile .avatar-name-holder {
-  background-color: rgba(0, 66, 255, 0.3);
-  /*background-color: rgba(0, 255, 127, 0.3);*/
+  /*background-color: rgba(0, 66, 255, 0.3);*/
+  background-color: rgba(0, 255, 127, 0.3);
   /*background-color: rgba(255, 0, 67, 0.5);*/
   /*background-color: rgba(67, 0, 255, 0.5);*/
   border-radius: 50px 5px 5px 50px;
@@ -85,11 +78,11 @@ export default {
   align-content: center;
   align-items: stretch;
 }
-[data-team="esteghlal"] .profile .avatar-name-holder {
+.profile[data-team="esteghlal"] .avatar-name-holder {
   background-color: rgba(0, 66, 255, 0.5);
 }
 
-[data-team="perspolis"] .profile .avatar-name-holder {
+.profile[data-team="perspolis"] .avatar-name-holder {
   background-color: rgba(255, 66, 0, 0.5);
 }
 
