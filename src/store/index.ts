@@ -7,6 +7,19 @@ export interface State {
     name: string;
     username: string;
   };
+  people: {
+    uid: string | number;
+    name: string;
+    company?: null | string;
+    profession?: null | string;
+    address?: null | string;
+    phone?: null | string;
+    email?: null | string;
+    website?: null | string;
+    notes?: null | string;
+    avatar: string;
+    team?: null | string;
+  }[];
 }
 
 // define injection key
@@ -14,11 +27,6 @@ export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
   state: {
-    user: {
-      uid: 1,
-      name: "Jon Doe",
-      username: "jon.doe",
-    },
     people: [
       {
         uid: 0,
@@ -47,15 +55,18 @@ export const store = createStore<State>({
       {
         uid: 2,
         name: "Jon Doe",
-        company: "",
         profession: "Trader",
         address: "Tehran, IR",
         email: "jon.doe@example.com",
         website: "https://jon.example.com",
         avatar: "assets/img/avatar/011.webp",
-        team: "",
       },
     ],
+    user: {
+      uid: 999,
+      name: "Me MySelf",
+      username: "admin",
+    },
   },
   // getters:{},
   // dispatch: {},
