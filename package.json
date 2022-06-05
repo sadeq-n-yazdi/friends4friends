@@ -1,10 +1,11 @@
 {
-  "name": "pr0",
-  "version": "0.0.0",
+  "name": "friends4firends",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
+    "fake-db": "json-server --port 8000 --watch ./db.json",
     "test:unit": "vitest --environment jsdom",
     "test:e2e": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress open'",
     "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress run'",
