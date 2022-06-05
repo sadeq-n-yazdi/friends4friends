@@ -6,9 +6,10 @@ export default defineComponent({
   computed: {},
 });
 </script>
+
 <template>
   <div :id="`avatar-${this.uid}`" class="avatar float-center">
-    <img  :src="src" :alt="name" class="border-gray round-5p box-100" />
+    <img :src="src" :alt="name" class="border-gray round-5p box-100" />
   </div>
 </template>
 
@@ -42,7 +43,7 @@ export default defineComponent({
   border-radius: 5px;
 }
 
-.box-100{
+.box-100 {
   width: 100px;
   height: 100px;
 }

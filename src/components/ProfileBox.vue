@@ -10,11 +10,11 @@ export default {
 </script>
 
 <template>
-  <div class="profile" :data-uid="info.uid" :data-team="info.team">
+  <div class="profile" :data-uid="info.id" :data-team="info.team">
     <div class="avatar-name-holder">
       <avatar
         :src="info.avatar"
-        :uid="info.uid"
+        :uid="info.id"
         :name="info.name"
         class="avatar"
       />
@@ -46,7 +46,7 @@ export default {
       <a class="button" v-if="info.website" :href="info.website">Website</a>
       <a
         v-if="!info.resume"
-        :href="'/assets/pdfs/resume/' + info.uid + '-resume.pdf'"
+        :href="'/assets/pdfs/resume/' + info.id + '-resume.pdf'"
         class="button"
         >Resume</a
       >

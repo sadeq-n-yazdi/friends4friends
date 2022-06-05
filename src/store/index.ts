@@ -1,14 +1,15 @@
 import type { InjectionKey } from "@vue/runtime-core";
 import { createStore, Store } from "vuex";
+import PeopleService from "@/services/PeopleService";
 
 export type User = {
-  uid: null | number;
+  id: null | number;
   name: null | string;
   username: null | string;
 };
 
 export type Person = {
-  uid: string | number;
+  id: string | number;
   name: string;
   company?: null | string;
   profession?: null | string;
@@ -29,11 +30,17 @@ export interface State {
 // define injection key
 export const key: InjectionKey<Store<State>> = Symbol();
 
+function shuffleArray(arr: Array<object>) {
+  return arr.sort(() => {
+    return Math.random() - 0.5;
+  });
+}
+
 export const store: Store<State> = createStore<State>({
   state: {
     people: [
       {
-        uid: 1,
+        id: 1,
         name: "John Doe",
         company: "Educational Publishing",
         profession: "👨‍💻 Senior Fullstack Developer",
@@ -47,7 +54,7 @@ export const store: Store<State> = createStore<State>({
         team: "perspolis",
       },
       {
-        uid: 2,
+        id: 2,
         name: "Jane Doe",
         company: "Samayesh",
         address: "Tehran, IR",
@@ -57,7 +64,7 @@ export const store: Store<State> = createStore<State>({
         team: "esteghlal",
       },
       {
-        uid: 3,
+        id: 3,
         name: "Jon Doe",
         profession: "Trader",
         address: "Tehran, IR",
@@ -67,32 +74,32 @@ export const store: Store<State> = createStore<State>({
       },
     ],
     user: {
-      uid: 999,
+      id: 999,
       name: "Me MySelf",
       username: "admin",
     },
   },
   actions: {
-    fetchPeople(context) {
-      //TODO: Perform Ajax Call to fetch people list
-      context.commit("SET_PEOPLE", [
-        {
-          uid: 4,
-          name: "Jon Matrix",
-          profession: "Superhero",
-          address: "Matrix",
-          email: "matrix@example.com",
-          website: "https://matrix.example.com",
-          avatar: "assets/img/avatar/012.webp",
-        },
-      ]);
+    fetchPeople({ commit /*, dispatch*/ }, { perPage, page }) {
+      PeopleService.getPeople(perPage ? perPage : 50, page ? page : 1)
+        .then((r) => {
+          commit("SET_PEOPLE", shuffleArray(r.data));
+        })
+        .catch((reason) => {
+          const notification = {
+            type: "error",
+            message: "There was a problem fetching events: " + reason.message,
+          };
+          // dispatch("notification/add", notification, { root: true });
+          console.warn(notification);
+        });
     },
     doLogin(context, user: User) {
       context.commit("SET_CURRENT_USER", user);
     },
     doLogout(context) {
       context.commit("SET_CURRENT_USER", {
-        uid: null,
+        id: null,
         name: null,
         username: null,
       });
@@ -100,10 +107,10 @@ export const store: Store<State> = createStore<State>({
   },
   getters: {
     isLoggedIn() {
-      return store.state.user.uid !== null;
+      return store.state.user.id !== null;
     },
     isAdmin() {
-      return store.state.user.uid === 999;
+      return store.state.user.id === 999;
     },
   },
   mutations: {

@@ -1,24 +1,20 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string;
-}>();
+<script lang="ts">
+import MessageBox from "@/components/MessageBox.vue";
+
+export default {
+  props: ["msg"],
+  components: {
+    MessageBox,
+  },
+};
 </script>
 
 <template>
   <div>
     <h1>Control Panel</h1>
 
-    <div v-if="msg" class="info">{{ msg }}</div>
+    <message-box type="warning"> Not implemented! </message-box>
   </div>
 </template>
 
-<style scoped>
-div.info {
-  background-color: darkslategray;
-  color: goldenrod;
-  border: 1px crimson solid;
-  border-radius: 5px;
-  padding: 1cm;
-  display: flex;
-}
-</style>
+<style scoped></style>

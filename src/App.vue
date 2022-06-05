@@ -1,13 +1,22 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { RouterLink, RouterView } from "vue-router";
 import { store } from "@/store";
+// import { ref } from 'vue'
+
+const created = () => {
+  store.dispatch("fetchPeople", {
+    perPage: null,
+    page: null,
+  });
+};
+created();
 </script>
 
 <template>
   <header>
     <div id="user" v-if="store.state.user">
       <div style="display: none">
-        <div>#{{ store.state.user.uid }}</div>
+        <div>#{{ store.state.user.id }}</div>
 
         <div>{{ store.state.user.username }}</div>
 
@@ -94,6 +103,7 @@ nav {
   a.router-link-exact-active {
     color: var(--color-text);
   }
+
   a.router-link-exact-active:hover {
     background-color: transparent;
   }

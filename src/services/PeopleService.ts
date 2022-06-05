@@ -3,6 +3,9 @@ import type { Person } from "@/store";
 
 const apiClient = axios.create({
   baseURL: `http://localhost:8000`,
+  // method: "GET",
+  // timeout: 30,
+  // timeoutErrorMessage: "slow responses!",
   withCredentials: false, // This is the default
   headers: {
     Accept: "application/json",

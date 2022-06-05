@@ -6,7 +6,7 @@ import ProfileBox from "@/components/ProfileBox.vue";
   <main>
     <ProfileBox
       v-for="person in $store.state.people"
-      :key="person.uid"
+      :key="person.id"
       :info="person"
     >
       {{ person.notes }}
