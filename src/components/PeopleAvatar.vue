@@ -8,7 +8,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div :id="`avatar-${this.uid}`" class="avatar float-center">
+  <div :id="`avatar-${uid}`" class="avatar float-center">
     <img :src="src" :alt="name" class="border-gray round-5p box-100" />
   </div>
 </template>
